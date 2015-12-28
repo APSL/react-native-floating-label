@@ -1,4 +1,4 @@
-import React, { Text, TextInput, View, Animated, PixelRatio } from 'react-native'
+import React, { Text, TextInput, View, Animated } from 'react-native'
 import t from 'tcomb-form-native'
 
 const Component = t.form.Component
@@ -19,14 +19,13 @@ class FloatingLabel extends Component {
     return function (locals) {
       const stylesheet = locals.stylesheet;
       let formGroupStyle = stylesheet.formGroup.normal;
-      // TODO: var controlLabelStyle = stylesheet.controlLabel.normal;
+      let controlLabelStyle = stylesheet.controlLabel.normal;
       let textboxStyle = stylesheet.textbox.normal;
       let helpBlockStyle = stylesheet.helpBlock.normal;
       let errorBlockStyle = stylesheet.errorBlock;
 
       if (locals.hasError) {
-        // TODO: control error
-        // controlLabelStyle = stylesheet.controlLabel.error;
+        controlLabelStyle = stylesheet.controlLabel.error;
         formGroupStyle = stylesheet.formGroup.error;
         textboxStyle = stylesheet.textbox.error;
         helpBlockStyle = stylesheet.helpBlock.error;
@@ -39,14 +38,14 @@ class FloatingLabel extends Component {
       const help = locals.help ? <Text style={helpBlockStyle}>{locals.help}</Text> : null;
       const error = locals.hasError && locals.error ? <Text style={errorBlockStyle}>{locals.error}</Text> : null;
       const label =
-        <Animated.Text style={{
+        <Animated.Text style={[controlLabelStyle, {
           opacity: self.state.fadeAnim,
           transform: [{
             translateY: self.state.fadeAnim.interpolate({
               inputRange: [0, 1],
               outputRange: [10, 0]
             }),
-          }],}}>
+          }]}]}>
           {locals.label}
         </Animated.Text>
 
@@ -135,11 +134,6 @@ class FloatingLabel extends Component {
 }
 
 const styles = React.StyleSheet.create({
-  container: {
-    paddingTop: 20,
-    borderBottomColor: 'gray',
-    borderBottomWidth: 1 / PixelRatio.get(),
-  },
   textInput: {
     height: 40,
   }
