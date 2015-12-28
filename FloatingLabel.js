@@ -10,7 +10,7 @@ class FloatingLabel extends Component {
       fieldFocused: false,
       value: undefined,
       fadeAnim: new Animated.Value(0),
-      placeholderString: '',
+      placeholderString: undefined,
     }
   }
 
@@ -49,6 +49,8 @@ class FloatingLabel extends Component {
           }],}}>
           {locals.label}
         </Animated.Text>
+
+      const placeholderString = (self.state.placeholderString !== undefined) ? self.state.placeholderString : locals.label
       return (
         <View style={formGroupStyle}>
           {label}
@@ -77,7 +79,7 @@ class FloatingLabel extends Component {
               self._onChangeText.bind(self, value, locals)
               locals.onChange(value)
             }}
-            placeholder={self.placeholderString || locals.label}
+            placeholder={placeholderString}
             maxLength={locals.maxLength}
             numberOfLines={locals.numberOfLines}
             textAlign={locals.textAlign}
@@ -104,7 +106,7 @@ class FloatingLabel extends Component {
     ).start()
     this.setState({
       fieldFocused: true,
-      placeholderString: undefined,
+      placeholderString: '',
     })
     if (locals.onFocus) {
       locals.onFocus()
@@ -120,7 +122,7 @@ class FloatingLabel extends Component {
     }
     this.setState({
       fieldFocused: false,
-      placeholderString: '',
+      placeholderString: locals.label
     })
     if (locals.onBlur) {
       locals.onBlur()
