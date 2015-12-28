@@ -7,9 +7,9 @@ class FloatingLabel extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      fieldFocused: false,
-      value: undefined,
-      fadeAnim: new Animated.Value(0),
+      fieldFocused: (props.value) ? true : false,
+      value: (props.value) ? String(props.value) : undefined,
+      fadeAnim: (props.value) ? new Animated.Value(1) : new Animated.Value(0),
       placeholderString: undefined,
     }
   }
@@ -75,8 +75,8 @@ class FloatingLabel extends Component {
             secureTextEntry={locals.secureTextEntry}
             selectionState={locals.selectionState}
             onChangeText={(value) => {
-              self._onChangeText.bind(self, value, locals)
               locals.onChange(value)
+              self._onChangeText.bind(self, value, locals)
             }}
             placeholder={placeholderString}
             maxLength={locals.maxLength}
