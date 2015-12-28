@@ -1,0 +1,19 @@
+{
+  "name": "FloatingLabel",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node_modules/react-native/packager/packager.sh"
+  },
+  "dependencies": {
+    "apsl-react-native-button": "^2.3.0",
+    "react-native": "^0.16.0",
+    "tcomb-form-native": "^0.3.2",
+    "react-native-floating-label": "^0.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "^3.11.3"
+  }
+}

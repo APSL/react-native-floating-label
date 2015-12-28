@@ -1,0 +1,35 @@
+{
+  "name": "FloatingLabel",
+  "version": "0.1.0",
+  "description": "A floating label text input factory for tcomb-form-native",
+  "main": "FloatingLabel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/APSL/react-native-floating-label.git"
+  },
+  "keywords": [
+    "react-native",
+    "ios",
+    "android",
+    "react-component",
+    "react",
+    "button"
+  ],
+  "author": "Alvaro Medina Ballester",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/APSL/react-native-floating-label/issues"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.11.0",
+    "tcomb-form-native": ">=0.3.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "^3.11.3"
+  }
+}
