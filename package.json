@@ -1,5 +1,5 @@
 {
-  "name": "FloatingLabel",
+  "name": "react-native-floating-label",
   "version": "0.1.0",
   "description": "A floating label text input factory for tcomb-form-native",
   "main": "FloatingLabel.js",
