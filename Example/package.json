@@ -9,7 +9,7 @@
     "apsl-react-native-button": "^2.3.0",
     "react-native": "^0.16.0",
     "tcomb-form-native": "^0.3.2",
-    "react-native-floating-label": "^0.1.0"
+    "react-native-floating-label": "^0.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.6",
