@@ -1,9 +1,9 @@
 import React, { Text, TextInput, View, Animated } from 'react-native'
 import t from 'tcomb-form-native'
 
-const Component = t.form.Component
+const Textbox = t.form.Textbox
 
-class FloatingLabel extends Component {
+class FloatingLabel extends Textbox {
   constructor (props) {
     super(props)
     this.state = {
