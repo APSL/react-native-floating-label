@@ -1,4 +1,10 @@
-import React, { Text, TextInput, View, Animated } from 'react-native'
+import React, {
+  Text,
+  TextInput,
+  View,
+  Animated,
+  TouchableWithoutFeedback,
+} from 'react-native'
 import t from 'tcomb-form-native'
 
 const Textbox = t.form.Textbox
@@ -34,7 +40,6 @@ class FloatingLabel extends Textbox {
       if (locals.editable === false) {
         textboxStyle = stylesheet.textbox.notEditable;
       }
-
       const help = locals.help ? <Text style={helpBlockStyle}>{locals.help}</Text> : null;
       const error = locals.hasError && locals.error ? <Text style={errorBlockStyle}>{locals.error}</Text> : null;
       const label =
@@ -51,45 +56,47 @@ class FloatingLabel extends Textbox {
 
       const placeholderString = (self.state.placeholderString !== undefined) ? self.state.placeholderString : locals.label
       return (
-        <View style={formGroupStyle}>
-          {label}
-          <TextInput
-            ref='input'
-            autoCapitalize={locals.autoCapitalize}
-            autoCorrect={locals.autoCorrect}
-            autoFocus={locals.autoFocus}
-            bufferDelay={locals.bufferDelay}
-            clearButtonMode={locals.clearButtonMode}
-            editable={locals.editable}
-            enablesReturnKeyAutomatically={locals.enablesReturnKeyAutomatically}
-            keyboardType={locals.keyboardType}
-            multiline={locals.multiline}
-            onBlur={self._onBlur.bind(self, locals)}
-            onEndEditing={locals.onEndEditing}
-            onFocus={self._onFocus.bind(self, locals)}
-            onSubmitEditing={locals.onSubmitEditing}
-            password={locals.password}
-            placeholderTextColor={locals.placeholderTextColor}
-            returnKeyType={locals.returnKeyType}
-            selectTextOnFocus={locals.selectTextOnFocus}
-            secureTextEntry={locals.secureTextEntry}
-            selectionState={locals.selectionState}
-            onChangeText={(value) => {
-              locals.onChange(value)
-              self._onChangeText.bind(self, value, locals)
-            }}
-            placeholder={placeholderString}
-            maxLength={locals.maxLength}
-            numberOfLines={locals.numberOfLines}
-            textAlign={locals.textAlign}
-            textAlignVertical={locals.textAlignVertical}
-            underlineColorAndroid={locals.underlineColorAndroid}
-            style={[styles.textInput, textboxStyle]}
-            value={locals.value}
-          />
-          {help}
-          {error}
-        </View>
+        <TouchableWithoutFeedback onPress={() => self.refs.input.focus()}>
+          <View style={formGroupStyle}>
+            {label}
+            <TextInput
+              ref='input'
+              autoCapitalize={locals.autoCapitalize}
+              autoCorrect={locals.autoCorrect}
+              autoFocus={locals.autoFocus}
+              bufferDelay={locals.bufferDelay}
+              clearButtonMode={locals.clearButtonMode}
+              editable={locals.editable}
+              enablesReturnKeyAutomatically={locals.enablesReturnKeyAutomatically}
+              keyboardType={locals.keyboardType}
+              multiline={locals.multiline}
+              onBlur={self._onBlur.bind(self, locals)}
+              onEndEditing={locals.onEndEditing}
+              onFocus={self._onFocus.bind(self, locals)}
+              onSubmitEditing={locals.onSubmitEditing}
+              password={locals.password}
+              placeholderTextColor={locals.placeholderTextColor}
+              returnKeyType={locals.returnKeyType}
+              selectTextOnFocus={locals.selectTextOnFocus}
+              secureTextEntry={locals.secureTextEntry}
+              selectionState={locals.selectionState}
+              onChangeText={(value) => {
+                locals.onChange(value)
+                self._onChangeText.bind(self, value, locals)
+              }}
+              placeholder={placeholderString}
+              maxLength={locals.maxLength}
+              numberOfLines={locals.numberOfLines}
+              textAlign={locals.textAlign}
+              textAlignVertical={locals.textAlignVertical}
+              underlineColorAndroid={locals.underlineColorAndroid}
+              style={[styles.textInput, textboxStyle]}
+              value={locals.value}
+            />
+            {help}
+            {error}
+          </View>
+        </TouchableWithoutFeedback>
       )
     }
   }
