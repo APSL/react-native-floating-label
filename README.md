@@ -51,6 +51,9 @@ class App extends React.Component {
 }
 ```
 
+## API
+You can pass all the `TextInput` props, and an additional prop called `errorPlaceholderTextColor` which accepts a color `string` to change the placeholder color when a validation error occurs.
+
 ## Author
 Álvaro Medina Ballester. 2015.
 
