@@ -54,7 +54,7 @@ class FloatingLabel extends Textbox {
           {locals.label}
         </Animated.Text>
 
-      const placeholderString = (self.state.placeholderString !== undefined) ? self.state.placeholderString : locals.label;
+      const placeholderString = (self.state.fieldFocused) ? '' : self.state.placeholderString || locals.label;
       return (
         <TouchableWithoutFeedback onPress={() => {
             if (locals.editable === false) {
@@ -146,6 +146,10 @@ class FloatingLabel extends Textbox {
       'errorPlaceholderTextColor'
     ].forEach((name) => locals[name] = this.props.options[name]);
     return locals;
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
+    return true;
   }
 }
 
