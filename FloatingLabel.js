@@ -11,13 +11,13 @@ const Textbox = t.form.Textbox
 
 class FloatingLabel extends Textbox {
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
       fieldFocused: (props.value) ? true : false,
       value: (props.value) ? String(props.value) : undefined,
       fadeAnim: (props.value) ? new Animated.Value(1) : new Animated.Value(0),
       placeholderString: undefined,
-    }
+    };
   }
 
   getTemplate () {
@@ -54,9 +54,14 @@ class FloatingLabel extends Textbox {
           {locals.label}
         </Animated.Text>
 
-      const placeholderString = (self.state.placeholderString !== undefined) ? self.state.placeholderString : locals.label
+      const placeholderString = (self.state.placeholderString !== undefined) ? self.state.placeholderString : locals.label;
       return (
-        <TouchableWithoutFeedback onPress={() => self.refs.input.focus()}>
+        <TouchableWithoutFeedback onPress={() => {
+            if (locals.editable === false) {
+              return
+            }
+            self.refs.input.focus()
+          }}>
           <View style={formGroupStyle}>
             {label}
             <TextInput
@@ -75,7 +80,7 @@ class FloatingLabel extends Textbox {
               onFocus={self._onFocus.bind(self, locals)}
               onSubmitEditing={locals.onSubmitEditing}
               password={locals.password}
-              placeholderTextColor={locals.placeholderTextColor}
+              placeholderTextColor={(locals.hasError) ? locals.errorPlaceholderTextColor || 'red' : locals.placeholderTextColor || 'grey'}
               returnKeyType={locals.returnKeyType}
               selectTextOnFocus={locals.selectTextOnFocus}
               secureTextEntry={locals.secureTextEntry}
@@ -102,20 +107,20 @@ class FloatingLabel extends Textbox {
   }
 
   _onChangeText (text, locals) {
-    this.setState({value: text})
+    this.setState({value: text});
   }
 
   _onFocus (locals) {
     Animated.spring(
       this.state.fadeAnim,
       {toValue: 1, friction: 5},
-    ).start()
+    ).start();
     this.setState({
       fieldFocused: true,
       placeholderString: '',
-    })
+    });
     if (locals.onFocus) {
-      locals.onFocus()
+      locals.onFocus();
     }
   }
 
@@ -124,19 +129,23 @@ class FloatingLabel extends Textbox {
       Animated.timing(
         this.state.fadeAnim,
         {toValue: 0},
-      ).start()
+      ).start();
     }
     this.setState({
       fieldFocused: false,
       placeholderString: locals.label
-    })
+    });
     if (locals.onBlur) {
-      locals.onBlur()
+      locals.onBlur();
     }
   }
 
-  shouldComponentUpdate (nextProps, nextState) {
-    return true
+  getLocals () {
+    let locals = super.getLocals();
+    [
+      'errorPlaceholderTextColor'
+    ].forEach((name) => locals[name] = this.props.options[name]);
+    return locals;
   }
 }
 
@@ -144,6 +153,6 @@ const styles = React.StyleSheet.create({
   textInput: {
     height: 40,
   }
-})
+});
 
 export default FloatingLabel
