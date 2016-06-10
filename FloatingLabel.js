@@ -1,4 +1,6 @@
-import React, {
+import React from 'react';
+import {
+  StyleSheet,
   Text,
   TextInput,
   View,
@@ -153,7 +155,7 @@ class FloatingLabel extends Textbox {
   }
 }
 
-const styles = React.StyleSheet.create({
+const styles = StyleSheet.create({
   textInput: {
     height: 40,
   }
