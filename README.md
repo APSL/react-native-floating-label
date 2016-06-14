@@ -5,6 +5,13 @@ A floating label factory to use with [``tcomb-form-native``](https://github.com/
 <img src="https://raw.githubusercontent.com/wiki/alvaromb/react-native-floating-label/floating-form.gif" alt="Floating label" width="400">
 </p>
 
+## Install
+```
+npm i react-native-floating-label --save
+```
+
+Use 0.2.2 for RN>=0.25.
+
 ## Usage
 When configuring your ``tcomb-form-native`` ``Form``, use the ``factory`` option to set as ``FloatingLabel``:
 
