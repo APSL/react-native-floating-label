@@ -116,7 +116,6 @@
     "no-warning-comments": 0,
     "no-with": 1,
     "radix": 1,
-    "semi-spacing": 1,
     "vars-on-top": 0,
     "wrap-iife": 0,
     "yoda": 1,
