@@ -91,6 +91,7 @@ class FloatingLabel extends Textbox {
                 locals.onChange(value)
                 self._onChangeText.bind(self, value, locals)
               }}
+              onChange={locals.onChangeNative}
               placeholder={placeholderString}
               maxLength={locals.maxLength}
               numberOfLines={locals.numberOfLines}
