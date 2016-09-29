@@ -56,7 +56,8 @@ class FloatingLabel extends Textbox {
           {locals.label}
         </Animated.Text>
 
-      const placeholderString = (self.state.fieldFocused) ? '' : self.state.placeholderString || locals.label;
+      const placeholderString = (self.state.fieldFocused) ? '' : (locals.placeholder) ? locals.placeholder : self.state.placeholderString || locals.label;
+
       return (
         <TouchableWithoutFeedback onPress={() => {
             if (locals.editable === false) {
