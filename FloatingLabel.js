@@ -22,6 +22,19 @@ class FloatingLabel extends Textbox {
     };
   }
 
+  componentWillReceiveProps(next) {
+
+    // Make sure that when we have a value, we also show the label
+    if(this.props.value !== next.value && next.value) {
+      this.setState({
+        fadeAnim: new Animated.Value(1),
+      })
+    }
+
+    super.componentWillReceiveProps(next)
+  }
+
+
   getTemplate () {
     let self = this
     return function (locals) {
