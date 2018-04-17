@@ -99,6 +99,7 @@ class FloatingLabel extends Textbox {
               textAlignVertical={locals.textAlignVertical}
               underlineColorAndroid={locals.underlineColorAndroid}
               style={[styles.textInput, textboxStyle]}
+              testID={locals.testID}
               value={locals.value}
             />
             {help}
