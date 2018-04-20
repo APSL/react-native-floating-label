@@ -14,10 +14,14 @@ const Textbox = t.form.Textbox
 class FloatingLabel extends Textbox {
   constructor (props) {
     super(props);
+
+    // run the value through the transformer, because 0 is also a valid input in some cases
+    const hasValue = this.getTransformer().format(props.value)
+
     this.state = {
-      fieldFocused: (props.value) ? true : false,
-      value: (props.value) ? String(props.value) : undefined,
-      fadeAnim: (props.value) ? new Animated.Value(1) : new Animated.Value(0),
+      fieldFocused: hasValue ? true : false,
+      value:  hasValue ? String(props.value) : undefined,
+      fadeAnim: hasValue ? new Animated.Value(1) : new Animated.Value(0),
       placeholderString: undefined,
     };
   }
@@ -25,7 +29,7 @@ class FloatingLabel extends Textbox {
   componentWillReceiveProps(next) {
 
     // Make sure that when we have a value, we also show the label
-    if(this.props.value !== next.value && next.value) {
+    if(this.props.value !== next.value && this.getTransformer().format(next.value)) {
       this.setState({
         fadeAnim: new Animated.Value(1),
       })
